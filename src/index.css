@@ -151,7 +151,101 @@ a { color: inherit; text-decoration: none; }
 .trio .photo { aspect-ratio: 3 / 4; }
 .pair .photo { aspect-ratio: 6 / 5; }
 
-.prose .slot { max-width: 36rem; }
+.statement {
+  margin: 0;
+  max-width: 28rem;
+  color: #000;
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 24.2px;
+}
+
+.stack { margin-top: 22px; }
+.stack .body + .body { margin-top: 14px; }
+
+.criteria,
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.criteria {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 22rem));
+  gap: 28px 48px;
+}
+
+.criteria h3,
+.steps h3 {
+  margin: 0 0 8px;
+  color: #000;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16.8px;
+}
+
+.criteria .index {
+  display: inline-block;
+  min-width: 1.1rem;
+  margin-right: 0.35rem;
+  color: #000;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.criteria .body { max-width: 22rem; }
+
+.pair-copy {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 26.25rem));
+  gap: 28px 48px;
+  margin-top: 28px;
+}
+
+.plate {
+  margin: 3.25rem 0 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #fff;
+  line-height: 0;
+}
+
+.band > .kicker { margin-bottom: 1.35rem; }
+.pair-copy .kicker { margin-bottom: 10px; }
+.kicker + .plate { margin-top: 0; }
+
+.plate img,
+.step-photos img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
+}
+
+.plate.dark,
+.plate.dark img { background: #141414; }
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.step-photos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  max-width: 720px;
+  align-items: start;
+}
+
+.step-photos img { border-radius: 10px; }
 
 main { padding-bottom: 7.5rem; }
 
@@ -221,6 +315,18 @@ main { padding-bottom: 7.5rem; }
   .pair { gap: 10px; }
   .split.flip .slot,
   .split.flip .photo { order: 0; }
+  .statement,
+  .criteria .body,
+  .pair-copy .body { max-width: none; }
+  .criteria,
+  .pair-copy {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .pair-copy { margin-top: 1.5rem; }
+  .plate { margin-top: 2rem; }
+  .kicker + .plate { margin-top: 0; }
+  .step-photos { max-width: none; }
   .photo,
   .photo.tall,
   .photo.wide,

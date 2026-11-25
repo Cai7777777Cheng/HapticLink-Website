@@ -4,7 +4,7 @@ Project detail page for HapticLink.
 
 Helps visually impaired individuals experience mainstream visual games.
 
-Live preview: [https://hapticlink.deed.page/](https://hapticlink.deed.page/)
+Project site: [https://cai7777777cheng.github.io/HapticLink-Website/](https://cai7777777cheng.github.io/HapticLink-Website/)
 
 ## Local
 
@@ -35,4 +35,4 @@ VITE_BASE_PATH=/HapticLink-Website/ npm run build
 
 ## Photos and copy
 
-The hero is `public/hero.jpg` and is shown in full. Later frames are gray blocks labeled “Photo to come”. Text that is not written yet is marked “Copy to come”.
+The hero is `public/hero.jpg`, shown in full at its own aspect ratio. Product bands use `public/board-12.png`, `board-13.png`, `board-14.png`, and `board-15.png`. Wearing guidance uses crops of the product photos on `board-10.png`.
