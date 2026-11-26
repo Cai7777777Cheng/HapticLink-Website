@@ -11,8 +11,6 @@
 
 .stage.dark { background: #141414; }
 
-.stage.follow { margin-top: 3.25rem; }
-
 .hero .stage {
   width: auto;
   margin: 0 var(--edge);
@@ -166,8 +164,4 @@
   .ripple.delay { display: none; }
   .scene-spinner,
   .scene-ready { animation: none; }
-}
-
-@media (max-width: 860px) {
-  .stage.follow { margin-top: 2rem; }
 }
