@@ -79,7 +79,12 @@ export const board12Scene = {
    * stretched or cropped. Left edge stays put.
    */
   arm: { left: '0%', top: '6%', width: '50.4%', height: '88%' },
-  product: { left: '56.19%', top: '0.84%', width: '46.41%', height: '56.83%' },
+  /**
+   * Opaque right tip of headband-detail.webp is 2072/2200 of the file.
+   * Left is set so that tip meets the shared right edge of the headband
+   * title and blurb (98.029% of the plate). Width and height stay put.
+   */
+  product: { left: '54.319%', top: '0.84%', width: '46.41%', height: '56.83%' },
   hotspots: {
     wristband: { left: '21%', top: '67%', width: '16%', height: '14%' },
     headband: { left: '66%', top: '7%', width: '22%', height: '12%' },
