@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Board12Scene } from '../components/Board12Scene.tsx'
+import { Board11Plate, Board6Plate } from '../components/FigmaPlate.tsx'
 import { FadeIn } from '../components/FadeIn.tsx'
 import { useDecoded } from '../decodeImage.ts'
 import {
@@ -223,6 +224,10 @@ export function Home() {
         </div>
       </Reveal>
 
+      <section className="band" aria-label="Any games that can be played by the visually impaired?">
+        <Board6Plate />
+      </section>
+
       <Reveal className="band">
         <h2 className="kicker">Design Criteria</h2>
         <ol className="criteria">
@@ -311,6 +316,10 @@ export function Home() {
           ))}
         </ol>
       </Reveal>
+
+      <section className="band" aria-label="In-Game UX Test">
+        <Board11Plate />
+      </section>
 
       <section className="band">
         <div className="stage dark">
