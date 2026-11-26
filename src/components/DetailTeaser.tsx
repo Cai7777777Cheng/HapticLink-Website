@@ -11,6 +11,8 @@ export function DetailTeaser({
   height,
   alt,
   dialogLabel,
+  buttonLabel,
+  dialogClassName,
   children,
 }: {
   image: string
@@ -18,6 +20,8 @@ export function DetailTeaser({
   height: number
   alt: string
   dialogLabel: string
+  buttonLabel: string
+  dialogClassName?: string
   children: ReactNode
 }) {
   const [open, setOpen] = useState(false)
@@ -48,7 +52,7 @@ export function DetailTeaser({
       <div className="prototype-frame">
         <img src={asset(image)} width={width} height={height} alt={alt} decoding="async" />
         <button ref={openRef} type="button" className="prototype-open" onClick={() => setOpen(true)}>
-          SEE DETAILS
+          {buttonLabel}
         </button>
       </div>
       {open &&
@@ -61,7 +65,7 @@ export function DetailTeaser({
             transition={{ duration: reduce ? 0 : 0.35, ease: overlayMotion.ease }}
           >
             <div
-              className="b8-dialog"
+              className={dialogClassName ? `b8-dialog ${dialogClassName}` : 'b8-dialog'}
               role="dialog"
               aria-modal="true"
               aria-label={dialogLabel}

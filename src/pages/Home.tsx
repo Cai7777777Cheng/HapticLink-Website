@@ -224,11 +224,8 @@ export function Home() {
         <Board7Scene />
       </section>
 
-      <section className="band" aria-label="Cardboard headband prototypes">
+      <section className="band teaser-row" aria-label="Design process and hardware feasibility">
         <Board8Prompt />
-      </section>
-
-      <section className="band" aria-label="Hardware feasibility test">
         <Board9Prompt />
       </section>
 
