@@ -1,0 +1,20 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="8">
+<g id="Lol_light">
+<circle id="Ellipse 87" cx="200" cy="200" r="167.391" stroke-width="34.7826" stroke-linecap="round" stroke="#848FBD"/>
+<circle id="Ellipse 88" cx="250" cy="166.667" r="16.6667" fill="#E4E9FF" stroke-width="16.6667" stroke-linecap="round" stroke="#848FBD"/>
+<circle id="Ellipse 89" cx="150" cy="166.667" r="16.6667" fill="#E4E9FF" stroke-width="16.6667" stroke-linecap="round" stroke="#848FBD"/>
+<g id="Subtract">
+<use xlink:href="#stroke0_0_1" fill="#E4E9FF"/>
+<mask id="stroke1_0_1" maskUnits="userSpaceOnUse" x="117.536" y="233" width="165" height="84" fill="black">
+<rect fill="white" x="117.536" y="233" width="165" height="84"/>
+<use xlink:href="#stroke0_0_1"/>
+</mask>
+<path d="M200 300C168.34 300 141.836 280.689 135.029 254.795C134.473 252.68 134.195 251.622 134.821 250.811C135.446 250 136.602 250 138.912 250H261.088C263.398 250 264.554 250 265.179 250.811C265.805 251.622 265.527 252.68 264.971 254.795C258.164 280.69 231.659 300 200 300Z" stroke-width="33.3333" stroke-linecap="round" stroke="#848FBD" mask="url(#stroke1_0_1)"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="stroke0_0_1" d="M138.912 250C136.602 250 135.446 250 134.821 250.811C134.195 251.622 134.473 252.68 135.029 254.795C141.836 280.689 168.34 300 200 300C231.659 300 258.164 280.69 264.971 254.795C265.527 252.68 265.805 251.622 265.179 250.811C264.554 250 263.398 250 261.088 250H138.912Z"/>
+</defs>
+</svg>

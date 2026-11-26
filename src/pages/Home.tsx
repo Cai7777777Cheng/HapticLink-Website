@@ -1,6 +1,8 @@
 import { useState, type CSSProperties, type ReactNode } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Board12Scene } from '../components/Board12Scene.tsx'
+import { Board8Prompt } from '../components/Board8Prompt.tsx'
+import { Board7Scene } from '../components/Board7Scene.tsx'
 import { Board11Plate, Board6Plate } from '../components/FigmaPlate.tsx'
 import { FadeIn } from '../components/FadeIn.tsx'
 import {
@@ -13,25 +15,6 @@ import {
 import { plateSizes, responsiveImage } from '../responsiveImage.ts'
 
 const asset = (file: string) => `${import.meta.env.BASE_URL}${file}`
-
-const criteria = [
-  {
-    title: 'Low learning curve',
-    body: 'In-game orientation and distance are hard to discern with sound alone. User adaptability to the information should be considered.',
-  },
-  {
-    title: 'Wearing guidance',
-    body: 'New users need to have tactile/auditory guidance to help them use the product for the first time.',
-  },
-  {
-    title: 'Complexity adjustable',
-    body: 'After adaptation, the product should adjust to user preferences, providing more info for higher difficulty games or even sports.',
-  },
-  {
-    title: 'Sifted Info without ambiguity',
-    body: 'Product needs to filter and streamline information, rather than conveying all information to user.',
-  },
-]
 
 const steps = [
   {
@@ -236,20 +219,13 @@ export function Home() {
         <Board6Plate />
       </section>
 
-      <Reveal className="band">
-        <h2 className="kicker">Design Criteria</h2>
-        <ol className="criteria">
-          {criteria.map((item, index) => (
-            <li key={item.title}>
-              <h3>
-                <span className="index">{index + 1}</span>
-                {item.title}
-              </h3>
-              <p className="body">{item.body}</p>
-            </li>
-          ))}
-        </ol>
-      </Reveal>
+      <section className="band" aria-label="Motion Game Test with Sight Deprived">
+        <Board7Scene />
+      </section>
+
+      <section className="band" aria-label="Cardboard headband prototypes">
+        <Board8Prompt />
+      </section>
 
       <section className="band">
         <Board12Scene />
