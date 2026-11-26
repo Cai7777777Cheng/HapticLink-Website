@@ -21,7 +21,6 @@ export const board6Layers: PlateLayer[] = [
   { file: "card-interview-tsuji.png", alt: "Interview Tsuji", width: 2048, height: 671, left: 64.3288, top: 19.8364, w: 34.7898, h: 22.4888 },
   { file: "card-interview-bear.png", alt: "Interview Bear", width: 2048, height: 671, left: 64.3288, top: 38.6095, w: 34.7898, h: 22.4888 },
   { file: "card-interview-nakane.png", alt: "Interview Nakane", width: 2048, height: 671, left: 64.3288, top: 57.3827, w: 34.7898, h: 22.4888 },
-  { file: "img-switch-sports.png", alt: "Switch Sports thumbnail", width: 267, height: 433, left: 36.1243, top: 87.6728, w: 2.6353, h: 8.4323 },
 ]
 
 export const board6Bars = [
