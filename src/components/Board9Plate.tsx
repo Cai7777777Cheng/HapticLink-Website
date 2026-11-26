@@ -310,6 +310,7 @@ export function Board9Prompt() {
       height={2069}
       alt="Hardware test collage: a circular LED ring around an Arduino and breadboards, with two angled views marked in orange."
       dialogLabel="Hardware Feasibility Test"
+      buttonLabel="see technic details"
     >
       <Board9Plate />
     </DetailTeaser>

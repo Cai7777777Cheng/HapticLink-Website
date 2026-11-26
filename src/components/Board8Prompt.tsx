@@ -9,6 +9,8 @@ export function Board8Prompt() {
       height={549}
       alt="Black-and-white collage of cardboard headband prototypes and wearing tests."
       dialogLabel="Concept Development"
+      buttonLabel="see design process"
+      dialogClassName="b8-fit"
     >
       <Board8Plate />
     </DetailTeaser>
