@@ -156,7 +156,6 @@ export function Board12Scene() {
                 >
                   <div className="stage-overlay" style={place(board12Scene.wristTitle)}>
                     <img
-                      className="scene-title-dark"
                       src={asset('title-haptic-wristband.png')}
                       alt="Haptic Wristband"
                       width={1371}
