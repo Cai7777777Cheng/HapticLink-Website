@@ -35,4 +35,4 @@ VITE_BASE_PATH=/HapticLink-Website/ npm run build
 
 ## Photos and copy
 
-The hero is `public/hero.jpg`, shown in full at its own aspect ratio. Product bands use `public/board-12.png`, `board-13.png`, `board-14.png`, and `board-15.png`. Wearing guidance uses crops of the product photos on `board-10.png`.
+The hero is a white plate: `public/hero-photo.jpg` on the left, with `logo-mark.png`, `wordmark.png`, and the tagline overlaid in HTML. The wristband / headband band is an interactive plate (`person.png`, `arm-detail.jpg`, `headband-detail.png`) with separate title images and HTML type. Headband details, wristband details, and the exploded view use photo-only plates (`board-13-photos.jpg` through `board-15-photos.jpg`) and separate type. Positions live in `src/overlayLayout.ts`. The original baked hero is kept as `public/hero-original-composite.jpg`. Wearing guidance uses crops of the product photos on `board-10.png`.
