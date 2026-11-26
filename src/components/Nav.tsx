@@ -16,6 +16,9 @@ export function Nav() {
       <Link to="/" className="mark">
         HapticLink
       </Link>
+      <a className="nav-personal" href="https://cai7777777cheng.github.io/Personal-Website/">
+        Personal site
+      </a>
     </header>
   )
 }
