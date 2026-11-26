@@ -41,7 +41,6 @@ export function place(box: Box): CSSProperties {
 const sans = 'var(--sans)'
 
 export const copy = {
-  tagline: 'Helps visually impaired individuals experience mainstream visual games.',
   wristband:
     "Uses outer protrusions and wrist's central axis for proper wear, and conveys distance info through linear vibration electrodes.",
   headband:
@@ -124,4 +123,41 @@ export const board13 = {
 export const board14 = {
   title: { left: 39.3814, top: 50.0097, width: 21.2403, height: 5.4528 },
 } as const
+
+/**
+ * Board 6 pixel titles. Node boxes from the 10131.697 × 5135 frame, mapped
+ * onto the 3840 × 1947 plate. Game category and Targret are a few pixels
+ * taller than the 186px em box so the g/y descenders are in the overlay
+ * instead of left behind on the plate.
+ */
+export const board6Titles = [
+  {
+    file: 'board-6/title-any-games.png',
+    alt: 'Any games that can be played by the visually impaired?',
+    width: 1114,
+    height: 171,
+    box: { left: 1.9792, top: 6.7283, width: 29.0104, height: 8.7827 },
+  },
+  {
+    file: 'board-6/title-game-category.png',
+    alt: 'Game category Research',
+    width: 786,
+    height: 79,
+    box: { left: 36.1198, top: 6.7283, width: 20.4688, height: 4.0575 },
+  },
+  {
+    file: 'board-6/title-targret-feedback.png',
+    alt: 'Targret User Feedback',
+    width: 716,
+    height: 79,
+    box: { left: 65.5469, top: 6.7283, width: 18.6458, height: 4.0575 },
+  },
+  {
+    file: 'board-6/title-conclusion.png',
+    alt: 'Conclusion',
+    width: 332,
+    height: 71,
+    box: { left: 1.9792, top: 83.6158, width: 8.6458, height: 3.6466 },
+  },
+] as const
 

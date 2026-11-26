@@ -5,6 +5,8 @@ import {
   board6Layers,
   type PlateLayer,
 } from '../boardLayers.ts'
+import { FadeIn } from './FadeIn.tsx'
+import { board6Titles, place } from '../overlayLayout.ts'
 
 const asset = (file: string) => `${import.meta.env.BASE_URL}${file}`
 
@@ -88,9 +90,24 @@ function CategoryChart() {
   )
 }
 
+function Board6Titles() {
+  return board6Titles.map((title) => (
+    <FadeIn key={title.file} className="stage-overlay" style={place(title.box)}>
+      <img
+        src={asset(title.file)}
+        alt={title.alt}
+        width={title.width}
+        height={title.height}
+        draggable={false}
+      />
+    </FadeIn>
+  ))
+}
+
 export function Board6Plate() {
   return (
     <HoverPlate dir="board-6" plate="board-6-plate.webp" layers={board6Layers}>
+      <Board6Titles />
       <CategoryChart />
     </HoverPlate>
   )

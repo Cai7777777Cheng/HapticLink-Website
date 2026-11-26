@@ -7,7 +7,6 @@ import { useDecoded } from '../decodeImage.ts'
 import {
   board13,
   board14,
-  copy,
   hero,
   overlayMotion,
   place,
@@ -216,13 +215,6 @@ export function Home() {
           </div>
         </div>
       </section>
-
-      <Reveal className="intro" immediate>
-        <div className="intro-title">
-          <h1>HapticLink</h1>
-          <p>{copy.tagline}</p>
-        </div>
-      </Reveal>
 
       <section className="band" aria-label="Any games that can be played by the visually impaired?">
         <Board6Plate />
