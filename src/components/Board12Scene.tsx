@@ -57,7 +57,7 @@ export function Board12Scene() {
   const bandOpen = state === 'headband'
 
   return (
-    <div className="stage follow scene" onClick={() => setState('initial')}>
+    <div className="stage scene" onClick={() => setState('initial')}>
       <div className={`stage-canvas${ready ? ' scene-ready' : ''}`}>
         {ready ? (
           <>

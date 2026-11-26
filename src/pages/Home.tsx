@@ -48,7 +48,7 @@ const steps = [
       {
         src: 'wear-stretch-head.png',
         width: 375,
-        height: 264,
+        height: 288,
         alt: 'Person pulling the headband into place with both hands.',
       },
     ],
@@ -67,7 +67,7 @@ const steps = [
       {
         src: 'wear-guide-head.png',
         width: 373,
-        height: 281,
+        height: 301,
         alt: 'Person wearing the headband and wristband, eyes closed, beside a close view of the headband surface.',
       },
     ],
@@ -80,7 +80,7 @@ const steps = [
       {
         src: 'wear-play-wrist.png',
         width: 375,
-        height: 208,
+        height: 223,
         alt: 'Wristband worn on the wrist while holding a game controller.',
       },
       {
@@ -239,9 +239,6 @@ export function Home() {
       </Reveal>
 
       <section className="band">
-        <Reveal>
-          <h2 className="statement">Direction headband & Distance wristband</h2>
-        </Reveal>
         <Board12Scene />
       </section>
 
