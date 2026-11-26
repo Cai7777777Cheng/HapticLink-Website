@@ -7,6 +7,7 @@ import {
 } from '../boardLayers.ts'
 import { FadeIn } from './FadeIn.tsx'
 import { board6Titles, place } from '../overlayLayout.ts'
+import { plateFractionSizes, plateSizes, responsiveImage } from '../responsiveImage.ts'
 
 const asset = (file: string) => `${import.meta.env.BASE_URL}${file}`
 
@@ -35,10 +36,12 @@ function HoverPlate({
       <div className="stage-canvas">
         <img
           className="plate-img"
-          src={asset(`${dir}/${plate}`)}
+          {...responsiveImage(`${dir}/${plate}`, plateSizes)}
           alt=""
           width={3840}
           height={1947}
+          loading="lazy"
+          decoding="async"
           draggable={false}
         />
         {layers.map((layer) => (
@@ -48,10 +51,12 @@ function HoverPlate({
             style={box(layer.left, layer.top, layer.w, layer.h)}
           >
             <img
-              src={asset(`${dir}/${layer.file}`)}
+              {...responsiveImage(`${dir}/${layer.file}`, plateFractionSizes(layer.w / 100))}
               alt={layer.alt}
               width={layer.width}
               height={layer.height}
+              loading="lazy"
+              decoding="async"
               draggable={false}
             />
           </div>
@@ -98,6 +103,8 @@ function Board6Titles() {
         alt={title.alt}
         width={title.width}
         height={title.height}
+        loading="lazy"
+        decoding="async"
         draggable={false}
       />
     </FadeIn>

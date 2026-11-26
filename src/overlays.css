@@ -57,6 +57,8 @@
 
 .fill-img { object-position: center; }
 
+.scene-pending { visibility: hidden; }
+
 .scene-loading {
   position: absolute;
   inset: 0;
