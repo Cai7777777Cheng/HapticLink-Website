@@ -1,21 +1,14 @@
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Board12Scene } from '../components/Board12Scene.tsx'
 import { FadeIn } from '../components/FadeIn.tsx'
+import { useDecoded } from '../decodeImage.ts'
 import {
   board13,
   board14,
-  board15,
   copy,
-  explodedLabels,
-  explodedLeaders,
   hero,
-  labelType,
-  leaderPoints,
-  leaderStroke,
   overlayMotion,
-  PLATE_HEIGHT,
-  PLATE_WIDTH,
   place,
   taglineType,
 } from '../overlayLayout.ts'
@@ -44,6 +37,7 @@ const criteria = [
 const steps = [
   {
     title: 'Step 1: Stretch Test',
+    ratio: '380 / 268',
     photos: [
       {
         src: 'wear-stretch-band.png',
@@ -54,13 +48,14 @@ const steps = [
       {
         src: 'wear-stretch-head.png',
         width: 375,
-        height: 288,
+        height: 264,
         alt: 'Person pulling the headband into place with both hands.',
       },
     ],
   },
   {
     title: 'Step 2: Feel wearing direction guide & wear',
+    ratio: '382 / 288',
     photos: [
       {
         src: 'wear-guide-wrist.png',
@@ -71,18 +66,19 @@ const steps = [
       {
         src: 'wear-guide-head.png',
         width: 373,
-        height: 301,
+        height: 281,
         alt: 'Person wearing the headband and wristband, eyes closed, beside a close view of the headband surface.',
       },
     ],
   },
   {
     title: 'Step 3: Switch on, adjust volume & Play',
+    ratio: '402 / 223',
     photos: [
       {
         src: 'wear-play-wrist.png',
         width: 375,
-        height: 223,
+        height: 208,
         alt: 'Wristband worn on the wrist while holding a game controller.',
       },
       {
@@ -130,6 +126,9 @@ function Glyph({
   height,
   delay = 0,
   immediate = false,
+  duration,
+  rise,
+  ready = true,
 }: {
   file: string
   alt: string
@@ -138,9 +137,20 @@ function Glyph({
   height: number
   delay?: number
   immediate?: boolean
+  duration?: number
+  rise?: number
+  ready?: boolean
 }) {
   return (
-    <FadeIn immediate={immediate} delay={delay} className="stage-overlay" style={place(box)}>
+    <FadeIn
+      immediate={immediate}
+      delay={delay}
+      duration={duration}
+      rise={rise}
+      ready={ready}
+      className="stage-overlay"
+      style={place(box)}
+    >
       <img src={asset(file)} alt={alt} width={width} height={height} />
     </FadeIn>
   )
@@ -149,15 +159,22 @@ function Glyph({
 function PlatePhoto({ src, alt }: { src: string; alt: string }) {
   return (
     <FadeIn className="stage-fill">
-      <img className="fill-img" src={asset(src)} alt={alt} width={4096} height={2076} />
+      <img className="fill-img" src={asset(src)} alt={alt} width={3400} height={1723} />
     </FadeIn>
   )
 }
 
 const titleDelay = 0
-const bodyDelay = overlayMotion.stagger
 
 export function Home() {
+  const heroSrc = asset('hero-photo.jpg')
+  const heroReady = useDecoded([heroSrc])
+  const lockup = {
+    duration: overlayMotion.lockupDuration,
+    rise: overlayMotion.lockupY,
+    ready: heroReady,
+  }
+
   return (
     <main>
       <section className="hero" aria-label="HapticLink">
@@ -165,11 +182,13 @@ export function Home() {
           <div className="stage-canvas">
             <img
               className="stage-photo"
-              src={asset('hero-photo.jpg')}
-              width={6317}
-              height={5135}
+              src={heroSrc}
+              width={2880}
+              height={2341}
               alt="Person wearing the headband and wristband, eyes closed, holding a game controller."
               style={place(hero.photo)}
+              fetchPriority="high"
+              decoding="async"
             />
             <Glyph
               file="logo-mark.png"
@@ -179,6 +198,7 @@ export function Home() {
               height={1226}
               immediate
               delay={0}
+              {...lockup}
             />
             <Glyph
               file="wordmark.png"
@@ -187,11 +207,15 @@ export function Home() {
               width={1631}
               height={377}
               immediate
-              delay={overlayMotion.stagger}
+              delay={overlayMotion.lockupStagger}
+              {...lockup}
             />
             <FadeIn
               immediate
-              delay={overlayMotion.stagger * 2}
+              delay={overlayMotion.lockupStagger * 2}
+              duration={lockup.duration}
+              rise={lockup.rise}
+              ready={lockup.ready}
               className="stage-overlay"
               style={place(hero.tagline)}
             >
@@ -297,7 +321,10 @@ export function Home() {
           {steps.map((step) => (
             <li key={step.title}>
               <h3>{step.title}</h3>
-              <div className="step-photos">
+              <div
+                className="step-photos"
+                style={{ '--row-aspect': step.ratio } as CSSProperties}
+              >
                 {step.photos.map((photo) => (
                   <img
                     key={photo.src}
@@ -316,51 +343,14 @@ export function Home() {
       <section className="band">
         <div className="stage dark">
           <div className="stage-canvas">
-            <PlatePhoto
-              src="board-15-photos.jpg"
-              alt="Exploded layers of the wristband and the headband."
-            />
-            <Glyph
-              file="title-exploded-view.png"
-              alt="Exploded View"
-              box={board15.title}
-              width={1171}
-              height={185}
-              delay={titleDelay}
-            />
-            <FadeIn className="stage-layer" delay={bodyDelay}>
-              <svg
-                className="leaders"
-                viewBox={`0 0 ${PLATE_WIDTH} ${PLATE_HEIGHT}`}
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                {explodedLeaders.map((line) => {
-                  const { x1, x2, y1, y2 } = leaderPoints(line)
-                  return (
-                    <line
-                      key={line.id}
-                      x1={x1}
-                      y1={y1}
-                      x2={x2}
-                      y2={y2}
-                      stroke={leaderStroke.color}
-                      strokeWidth={leaderStroke.width}
-                      strokeDasharray={leaderStroke.dash}
-                      strokeLinecap="round"
-                    />
-                  )
-                })}
-              </svg>
-              {explodedLabels.map((label) => (
-                <p
-                  key={label.id}
-                  className="plate-label"
-                  style={{ ...place(label.box), ...labelType, color: label.color, textAlign: label.align }}
-                >
-                  {label.text}
-                </p>
-              ))}
+            <FadeIn className="stage-fill">
+              <img
+                className="fill-img"
+                src={asset('board-15.webp')}
+                width={3840}
+                height={1946}
+                alt="Exploded View. Wristband layers: Cushioned rubber, Velcro, Skin-friendly fabric, Fiber wire & components, Anti-slip rubber, Position Protrusions. Headband layers: Rubber Surface, Touching sensor, Vibrating components, Wrapping fiber wires, Waving strings, Skin-friendly fabric."
+              />
             </FadeIn>
           </div>
         </div>
