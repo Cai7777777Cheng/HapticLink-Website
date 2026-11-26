@@ -37,18 +37,18 @@ const steps = [
   {
     title: 'Step 1: Stretch Test',
     titleImage: { src: 'title-step-1.png', width: 1670, height: 186 },
-    ratio: '380 / 268',
+    ratio: '1820 / 1336',
     photos: [
       {
         src: 'wear-stretch-band.png',
-        width: 380,
-        height: 268,
+        width: 1598,
+        height: 1080,
         alt: 'Hands stretching the wristband, with a row of soft vibration points along the fabric.',
       },
       {
         src: 'wear-stretch-head.png',
-        width: 375,
-        height: 288,
+        width: 1820,
+        height: 1336,
         alt: 'Person pulling the headband into place with both hands.',
       },
     ],
@@ -56,18 +56,18 @@ const steps = [
   {
     title: 'Step 2: Feel wearing direction guide & wear',
     titleImage: { src: 'title-step-2.png', width: 3585, height: 186 },
-    ratio: '382 / 288',
+    ratio: '1427 / 1184',
     photos: [
       {
         src: 'wear-guide-wrist.png',
-        width: 382,
-        height: 288,
+        width: 1435,
+        height: 1080,
         alt: 'Hands feeling the raised guide on the wristband.',
       },
       {
         src: 'wear-guide-head.png',
-        width: 373,
-        height: 301,
+        width: 1427,
+        height: 1276,
         alt: 'Person wearing the headband and wristband, eyes closed, beside a close view of the headband surface.',
       },
     ],
@@ -75,18 +75,19 @@ const steps = [
   {
     title: 'Step 3: Switch on, adjust volume & Play',
     titleImage: { src: 'title-step-3.png', width: 3342, height: 186 },
-    ratio: '402 / 223',
+    ratio: '568 / 338',
     photos: [
       {
         src: 'wear-play-wrist.png',
-        width: 375,
-        height: 223,
+        width: 568,
+        height: 338,
         alt: 'Wristband worn on the wrist while holding a game controller.',
       },
       {
         src: 'wear-play-head.png',
-        width: 402,
-        height: 223,
+        width: 1540,
+        height: 797,
+        objectPosition: 'right center',
         alt: 'Finger resting on the headband’s wear mark while the band is worn.',
       },
     ],
@@ -301,6 +302,11 @@ export function Home() {
                     width={photo.width}
                     height={photo.height}
                     alt={photo.alt}
+                    style={
+                      'objectPosition' in photo
+                        ? { objectPosition: photo.objectPosition }
+                        : undefined
+                    }
                   />
                 ))}
               </div>
