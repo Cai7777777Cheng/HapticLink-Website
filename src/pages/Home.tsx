@@ -10,7 +10,6 @@ import {
   hero,
   overlayMotion,
   place,
-  taglineType,
 } from '../overlayLayout.ts'
 
 const asset = (file: string) => `${import.meta.env.BASE_URL}${file}`
@@ -37,6 +36,7 @@ const criteria = [
 const steps = [
   {
     title: 'Step 1: Stretch Test',
+    titleImage: { src: 'title-step-1.png', width: 1670, height: 186 },
     ratio: '380 / 268',
     photos: [
       {
@@ -55,6 +55,7 @@ const steps = [
   },
   {
     title: 'Step 2: Feel wearing direction guide & wear',
+    titleImage: { src: 'title-step-2.png', width: 3585, height: 186 },
     ratio: '382 / 288',
     photos: [
       {
@@ -73,6 +74,7 @@ const steps = [
   },
   {
     title: 'Step 3: Switch on, adjust volume & Play',
+    titleImage: { src: 'title-step-3.png', width: 3342, height: 186 },
     ratio: '402 / 223',
     photos: [
       {
@@ -210,17 +212,6 @@ export function Home() {
               delay={overlayMotion.lockupStagger}
               {...lockup}
             />
-            <FadeIn
-              immediate
-              delay={overlayMotion.lockupStagger * 2}
-              duration={lockup.duration}
-              rise={lockup.rise}
-              ready={lockup.ready}
-              className="stage-overlay"
-              style={place(hero.tagline)}
-            >
-              <p style={taglineType}>{copy.tagline}</p>
-            </FadeIn>
           </div>
         </div>
       </section>
@@ -229,29 +220,6 @@ export function Home() {
         <div className="intro-title">
           <h1>HapticLink</h1>
           <p>{copy.tagline}</p>
-        </div>
-        <div className="intro-copy">
-          <p className="kicker">Intro</p>
-          <p className="body">
-            As a fellow gamer, I’m passionate about creating a product that allows visually impaired
-            people to independently play video games.
-          </p>
-        </div>
-      </Reveal>
-
-      <Reveal className="band copy">
-        <h2 className="statement">Any games that can be played by the visually impaired?</h2>
-        <div className="stack">
-          <p className="body">
-            With the rise of Black Myth WuKong, a special player is eager to experience it. Despite
-            being visually impaired, he relies on a friend’s voice instructions to guide his
-            operations.
-          </p>
-          <p className="body">
-            Though there are games that rely solely on sound, many blind players all over the world
-            continue to play various visual games. Many visually impaired, driven by their passion,
-            struggle to participate.
-          </p>
         </div>
       </Reveal>
 
@@ -320,7 +288,14 @@ export function Home() {
         <ol className="steps">
           {steps.map((step) => (
             <li key={step.title}>
-              <h3>{step.title}</h3>
+              <h3>
+                <img
+                  src={asset(step.titleImage.src)}
+                  width={step.titleImage.width}
+                  height={step.titleImage.height}
+                  alt={step.title}
+                />
+              </h3>
               <div
                 className="step-photos"
                 style={{ '--row-aspect': step.ratio } as CSSProperties}

@@ -125,11 +125,6 @@
   pointer-events: none;
 }
 
-/* Source ink is white. Flatten it so the glyph reads on the white gap beside the arm. */
-.scene-title-dark {
-  filter: brightness(0);
-}
-
 .hotspot {
   z-index: 5;
   padding: 0;

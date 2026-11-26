@@ -11,7 +11,7 @@ export const overlayMotion = {
   ease: [0.22, 1, 0.36, 1] as const,
   heroY: 12,
   heroDuration: 0.9,
-  /** Logo, then wordmark, then tagline. Slower than the rest of the page. */
+  /** Logo, then wordmark. Slower than the rest of the page. */
   lockupY: 18,
   lockupDuration: 1.95,
   lockupStagger: 0.38,
@@ -52,25 +52,7 @@ export const hero = {
   photo: { left: 0, top: 0, width: 62.3489, height: 100 },
   logo: { left: 74.0978, top: 28.8023, width: 12.4486, height: 22.7505 },
   wordmark: { left: 72.0876, top: 54.642, width: 16.4336, height: 7.4002 },
-  tagline: { left: 65.7708, top: 65.1217, width: 29.0573, height: 3.8948 },
 } as const
-
-export const taglineType: CSSProperties = {
-  margin: 0,
-  width: '100%',
-  height: '100%',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  fontFamily: sans,
-  fontWeight: 400,
-  fontSize: '0.9475cqw',
-  letterSpacing: '-0.020061cqw',
-  lineHeight: '3.8948cqh',
-  textAlign: 'center',
-  whiteSpace: 'nowrap',
-  color: '#000000',
-}
 
 /**
  * Board 12 scene. Person/arm/headband boxes are percentages of the plate.
