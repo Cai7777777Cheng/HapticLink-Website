@@ -73,7 +73,12 @@ export const board12Scene = {
       headband: '-2%',
     },
   },
-  arm: { left: '0%', top: '0%', width: '57.3%', height: '100%' },
+  /**
+   * Full arm photo, scaled down just enough to sit in the vertical middle
+   * of the plate. Width tracks the same aspect so the picture is not
+   * stretched or cropped. Left edge stays put.
+   */
+  arm: { left: '0%', top: '6%', width: '50.4%', height: '88%' },
   product: { left: '56.19%', top: '0.84%', width: '46.41%', height: '56.83%' },
   hotspots: {
     wristband: { left: '21%', top: '67%', width: '16%', height: '14%' },
