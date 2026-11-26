@@ -44,6 +44,28 @@
 .stage-overlay,
 .stage-layer { z-index: 1; }
 
+/* Board 6 HTML labels sit above hover cards so a card scale cannot cover them. */
+.plate-copy {
+  z-index: 7;
+  margin: 0;
+  pointer-events: none;
+  font-family: var(--sans);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: #111;
+}
+
+.plate-copy-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.plate-copy em {
+  font-style: normal;
+  font-weight: 600;
+  color: #45459c;
+}
+
 .stage-overlay img,
 .fill-img {
   width: 100%;

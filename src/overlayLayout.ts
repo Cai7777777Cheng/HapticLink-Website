@@ -124,6 +124,115 @@ export const board14 = {
   title: { left: 39.3814, top: 50.0097, width: 21.2403, height: 5.4528 },
 } as const
 
+/** Figma frame width. Lengths in cqw track this so type stays locked to the plate. */
+export const frameWidth = 10131.697265625
+
+export function frameLength(px: number) {
+  return `${(px / frameWidth) * 100}cqw`
+}
+
+export type Board6Run = {
+  text: string
+  emphasis?: boolean
+}
+
+/**
+ * Board 6 labels that used to be baked into the plate. Boxes are the Figma
+ * node frames on the 10131.697 × 5135 board, as percentages. Font sizes and
+ * line heights are Figma px on that same frame.
+ */
+export const board6Labels: readonly {
+  id: string
+  box: Box
+  fontSize: number
+  lineHeight: number
+  weight: number
+  color: string
+  lines: readonly (readonly Board6Run[])[]
+}[] = [
+  {
+    id: 'platform-research',
+    box: { left: 36.1243, top: 18.9679, width: 7.9158, height: 2.6095 },
+    fontSize: 102,
+    lineHeight: 134,
+    weight: 400,
+    color: '#111111',
+    lines: [[{ text: 'Platform Research' }]],
+  },
+  {
+    id: 'desk-research',
+    box: { left: 65.5665, top: 18.9679, width: 27.9716, height: 2.6095 },
+    fontSize: 102,
+    lineHeight: 134,
+    weight: 400,
+    color: '#111111',
+    lines: [[{ text: 'Desk Research – Interview with Visually impaired players in Japan' }]],
+  },
+  {
+    id: 'nintendo-easiest',
+    box: { left: 44.8197, top: 43.4275, width: 18.4372, height: 2.2395 },
+    fontSize: 104,
+    lineHeight: 115,
+    weight: 500,
+    color: '#e1504b',
+    lines: [[{ text: 'Nintendo have easiest operation system.' }]],
+  },
+  {
+    id: 'motion-easiest',
+    box: { left: 49.5179, top: 75.5794, width: 13.7391, height: 2.2395 },
+    fontSize: 104,
+    lineHeight: 115,
+    weight: 500,
+    color: '#e1504b',
+    lines: [[{ text: 'Motion games are the easiest.' }]],
+  },
+  {
+    id: 'conclusion-passion',
+    box: { left: 1.9839, top: 90.8861, width: 31.0313, height: 5.2191 },
+    fontSize: 103,
+    lineHeight: 134,
+    weight: 400,
+    color: '#111111',
+    lines: [
+      [
+        { text: 'As a fellow gamer, I’m passionate about ' },
+        { text: 'creating a product that', emphasis: true },
+      ],
+      [{ text: 'allows visually impaired people to independently play video games.', emphasis: true }],
+    ],
+  },
+  {
+    id: 'conclusion-switch',
+    box: { left: 39.411, top: 90.8861, width: 15.2788, height: 5.2191 },
+    fontSize: 103,
+    lineHeight: 134,
+    weight: 400,
+    color: '#111111',
+    lines: [
+      [{ text: 'Motion games Switch Sports can', emphasis: true }],
+      [{ text: 'be selected as the test object.', emphasis: true }],
+    ],
+  },
+  {
+    id: 'conclusion-learning',
+    box: { left: 65.6159, top: 90.8861, width: 32.4131, height: 5.2191 },
+    fontSize: 103,
+    lineHeight: 134,
+    weight: 400,
+    color: '#111111',
+    lines: [
+      [
+        { text: '1. Visually impaired are ' },
+        { text: 'easy to give up games with high learning curve.', emphasis: true },
+      ],
+      [
+        { text: '2. Hard to pass without ' },
+        { text: 'long–term and painful practice in games.', emphasis: true },
+      ],
+    ],
+  },
+]
+
 /**
  * Board 6 pixel titles. Node boxes from the 10131.697 × 5135 frame, mapped
  * onto the 3840 × 1947 plate. Game category and Targret are a few pixels
