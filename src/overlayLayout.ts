@@ -234,6 +234,18 @@ export const board6Labels: readonly {
 ]
 
 /**
+ * Switch Sports cover, Figma node 1:523 on the 10131.697 × 5135 board.
+ * It is an image overlay, not a hover card, so it can fade with the Conclusion row.
+ */
+export const board6SwitchCover = {
+  file: 'board-6/img-switch-sports.png',
+  alt: 'Nintendo Switch Sports cover',
+  width: 267,
+  height: 433,
+  box: { left: 36.1243, top: 87.6728, width: 2.6353, height: 8.4323 },
+} as const
+
+/**
  * Board 6 pixel titles. Node boxes from the 10131.697 × 5135 frame, mapped
  * onto the 3840 × 1947 plate. Game category and Targret are a few pixels
  * taller than the 186px em box so the g/y descenders are in the overlay

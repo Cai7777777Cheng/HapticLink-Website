@@ -294,7 +294,6 @@ export function Home() {
       </section>
 
       <Reveal className="band">
-        <h2 className="kicker">Wearing Guidance</h2>
         <ol className="steps">
           {steps.map((step) => (
             <li key={step.title}>
