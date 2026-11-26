@@ -6,7 +6,7 @@ import {
   type PlateLayer,
 } from '../boardLayers.ts'
 import { FadeIn } from './FadeIn.tsx'
-import { board6Titles, place } from '../overlayLayout.ts'
+import { board6Labels, board6Titles, frameLength, place } from '../overlayLayout.ts'
 import { plateFractionSizes, plateSizes, responsiveImage } from '../responsiveImage.ts'
 
 const asset = (file: string) => `${import.meta.env.BASE_URL}${file}`
@@ -111,10 +111,35 @@ function Board6Titles() {
   ))
 }
 
+function Board6Labels() {
+  return board6Labels.map((label) => (
+    <FadeIn
+      key={label.id}
+      className="stage-overlay plate-copy"
+      style={{
+        ...place(label.box),
+        fontSize: frameLength(label.fontSize),
+        lineHeight: frameLength(label.lineHeight),
+        fontWeight: label.weight,
+        color: label.color,
+      }}
+    >
+      {label.lines.map((line, lineIndex) => (
+        <span key={lineIndex} className="plate-copy-line">
+          {line.map((run, runIndex) =>
+            run.emphasis ? <em key={runIndex}>{run.text}</em> : <span key={runIndex}>{run.text}</span>,
+          )}
+        </span>
+      ))}
+    </FadeIn>
+  ))
+}
+
 export function Board6Plate() {
   return (
     <HoverPlate dir="board-6" plate="board-6-plate.webp" layers={board6Layers}>
       <Board6Titles />
+      <Board6Labels />
       <CategoryChart />
     </HoverPlate>
   )
