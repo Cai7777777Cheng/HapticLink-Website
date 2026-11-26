@@ -1,9 +1,8 @@
-import type { CSSProperties, ReactNode } from 'react'
+import { useState, type CSSProperties, type ReactNode } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Board12Scene } from '../components/Board12Scene.tsx'
 import { Board11Plate, Board6Plate } from '../components/FigmaPlate.tsx'
 import { FadeIn } from '../components/FadeIn.tsx'
-import { useDecoded } from '../decodeImage.ts'
 import {
   board13,
   board14,
@@ -11,6 +10,7 @@ import {
   overlayMotion,
   place,
 } from '../overlayLayout.ts'
+import { plateSizes, responsiveImage } from '../responsiveImage.ts'
 
 const asset = (file: string) => `${import.meta.env.BASE_URL}${file}`
 
@@ -154,7 +154,14 @@ function Glyph({
       className="stage-overlay"
       style={place(box)}
     >
-      <img src={asset(file)} alt={alt} width={width} height={height} />
+      <img
+        src={asset(file)}
+        alt={alt}
+        width={width}
+        height={height}
+        loading={immediate ? 'eager' : 'lazy'}
+        decoding="async"
+      />
     </FadeIn>
   )
 }
@@ -162,7 +169,15 @@ function Glyph({
 function PlatePhoto({ src, alt }: { src: string; alt: string }) {
   return (
     <FadeIn className="stage-fill">
-      <img className="fill-img" src={asset(src)} alt={alt} width={3400} height={1723} />
+      <img
+        className="fill-img"
+        {...responsiveImage(src, plateSizes)}
+        alt={alt}
+        width={3400}
+        height={1723}
+        loading="lazy"
+        decoding="async"
+      />
     </FadeIn>
   )
 }
@@ -170,8 +185,7 @@ function PlatePhoto({ src, alt }: { src: string; alt: string }) {
 const titleDelay = 0
 
 export function Home() {
-  const heroSrc = asset('hero-photo.jpg')
-  const heroReady = useDecoded([heroSrc])
+  const [heroReady, setHeroReady] = useState(false)
   const lockup = {
     duration: overlayMotion.lockupDuration,
     rise: overlayMotion.lockupY,
@@ -185,13 +199,14 @@ export function Home() {
           <div className="stage-canvas">
             <img
               className="stage-photo"
-              src={heroSrc}
+              src={asset('hero-photo.jpg')}
               width={2880}
               height={2341}
               alt="Person wearing the headband and wristband, eyes closed, holding a game controller."
               style={place(hero.photo)}
               fetchPriority="high"
               decoding="async"
+              onLoad={() => setHeroReady(true)}
             />
             <Glyph
               file="logo-mark.png"
@@ -289,6 +304,8 @@ export function Home() {
                   width={step.titleImage.width}
                   height={step.titleImage.height}
                   alt={step.title}
+                  loading="lazy"
+                  decoding="async"
                 />
               </h3>
               <div
@@ -298,10 +315,12 @@ export function Home() {
                 {step.photos.map((photo) => (
                   <img
                     key={photo.src}
-                    src={asset(photo.src)}
+                    {...responsiveImage(photo.src, 'calc((100vw - 40px) / 2)')}
                     width={photo.width}
                     height={photo.height}
                     alt={photo.alt}
+                    loading="lazy"
+                    decoding="async"
                     style={
                       'objectPosition' in photo
                         ? { objectPosition: photo.objectPosition }
@@ -325,10 +344,12 @@ export function Home() {
             <FadeIn className="stage-fill">
               <img
                 className="fill-img"
-                src={asset('board-15.webp')}
+                {...responsiveImage('board-15.webp', plateSizes)}
                 width={3840}
                 height={1946}
                 alt="Exploded View. Wristband layers: Cushioned rubber, Velcro, Skin-friendly fabric, Fiber wire & components, Anti-slip rubber, Position Protrusions. Headband layers: Rubber Surface, Touching sensor, Vibrating components, Wrapping fiber wires, Waving strings, Skin-friendly fabric."
+                loading="lazy"
+                decoding="async"
               />
             </FadeIn>
           </div>

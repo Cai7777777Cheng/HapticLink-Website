@@ -1,6 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { decodeImage, useDecoded } from '../decodeImage.ts'
 import {
   board12Scene,
   copy,
@@ -9,6 +8,7 @@ import {
   place,
   wristbandBodyType,
 } from '../overlayLayout.ts'
+import { plateFractionSizes, responsiveImage } from '../responsiveImage.ts'
 
 const asset = (file: string) => `${import.meta.env.BASE_URL}${file}`
 
@@ -18,15 +18,25 @@ const sceneFiles = {
   headband: { file: 'headband-detail.webp', width: 2200, height: 1365 },
 } as const
 
-const sceneSrcs = [
-  asset(sceneFiles.person.file),
-  asset(sceneFiles.arm.file),
-  asset(sceneFiles.headband.file),
-] as const
+function useNear(margin: string) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [near, setNear] = useState(false)
 
-sceneSrcs.forEach((src) => {
-  void decodeImage(src)
-})
+  useEffect(() => {
+    const node = ref.current
+    if (!node || near) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) setNear(true)
+      },
+      { rootMargin: margin },
+    )
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [margin, near])
+
+  return [ref, near] as const
+}
 
 type SceneState = 'initial' | 'wristband' | 'headband'
 
@@ -43,8 +53,11 @@ function Ripples() {
 
 export function Board12Scene() {
   const reduce = useReducedMotion()
-  const ready = useDecoded(sceneSrcs)
+  const [rootRef, near] = useNear('1200px')
+  const [loaded, setLoaded] = useState(0)
+  const ready = loaded >= 3
   const [state, setState] = useState<SceneState>('initial')
+  const markLoaded = () => setLoaded((count) => count + 1)
 
   const travel = reduce ? { duration: 0 } : { duration: 0.8, ease }
   const fade = reduce ? { duration: 0.2, ease } : { duration: 0.8, ease }
@@ -57,18 +70,26 @@ export function Board12Scene() {
   const bandOpen = state === 'headband'
 
   return (
-    <div className="stage scene" onClick={() => setState('initial')}>
+    <div ref={rootRef} className="stage scene" onClick={() => setState('initial')}>
       <div className={`stage-canvas${ready ? ' scene-ready' : ''}`}>
-        {ready ? (
-          <>
+        {!ready ? (
+          <p className="scene-loading" role="status">
+            <span className="scene-spinner" aria-hidden="true" />
+            Loading
+          </p>
+        ) : null}
+        {near ? (
+          <div className={ready ? undefined : 'scene-pending'}>
             <motion.img
               className="scene-layer scene-arm"
-              src={sceneSrcs[1]}
+              {...responsiveImage(sceneFiles.arm.file, plateFractionSizes(0.504))}
               alt=""
               width={sceneFiles.arm.width}
               height={sceneFiles.arm.height}
               draggable={false}
-              decoding="sync"
+              decoding="async"
+              onLoad={markLoaded}
+              onError={markLoaded}
               initial={false}
               animate={
                 reduce
@@ -91,12 +112,14 @@ export function Board12Scene() {
               }}
             >
               <img
-                src={sceneSrcs[0]}
+                {...responsiveImage(sceneFiles.person.file, plateFractionSizes(0.5621))}
                 alt="Person wearing the headband and wristband, holding game controllers."
                 width={sceneFiles.person.width}
                 height={sceneFiles.person.height}
                 draggable={false}
-                decoding="sync"
+                decoding="async"
+                onLoad={markLoaded}
+                onError={markLoaded}
               />
               <button
                 type="button"
@@ -128,12 +151,14 @@ export function Board12Scene() {
 
             <motion.img
               className="scene-layer scene-product"
-              src={sceneSrcs[2]}
+              {...responsiveImage(sceneFiles.headband.file, plateFractionSizes(0.4641))}
               alt=""
               width={sceneFiles.headband.width}
               height={sceneFiles.headband.height}
               draggable={false}
-              decoding="sync"
+              decoding="async"
+              onLoad={markLoaded}
+              onError={markLoaded}
               initial={false}
               animate={
                 reduce
@@ -190,13 +215,8 @@ export function Board12Scene() {
                 </motion.div>
               ) : null}
             </AnimatePresence>
-          </>
-        ) : (
-          <p className="scene-loading" role="status">
-            <span className="scene-spinner" aria-hidden="true" />
-            Loading
-          </p>
-        )}
+          </div>
+        ) : null}
       </div>
     </div>
   )
