@@ -50,7 +50,6 @@ export function Board8Plate() {
             alt=""
             width={image.pw}
             height={image.ph}
-            loading="lazy"
             decoding="async"
             draggable={false}
             style={{
