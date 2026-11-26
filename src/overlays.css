@@ -348,7 +348,16 @@
 
 .b7-orb img { width: 72%; height: 72%; object-fit: contain; pointer-events: none; }
 
-.b7-pill { z-index: 1; overflow: hidden; }
+.b7-pill { z-index: 1; overflow: hidden; background: transparent; }
+
+.b7-pill-shape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
 
 .b7-pill span,
 .b7-body {
@@ -369,27 +378,35 @@
   border-radius: 10px;
 }
 
+.prototype-open,
+.b8-close {
+  margin: 0;
+  border: 1px solid #45459c;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.94);
+  color: #45459c;
+  font-family: var(--sans);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
 .prototype-open {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  margin: 0;
-  padding: 0.7rem 1.15rem;
-  border: 0;
-  border-radius: 999px;
-  background: #fff;
-  color: #111;
-  font-family: var(--sans);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  line-height: 1;
-  cursor: pointer;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+  padding: 0.85rem 1.2rem;
+  font-size: 0.72rem;
 }
 
-.prototype-open:hover { background: #f4f4f4; }
+.prototype-open:hover,
+.b8-close:hover {
+  background: #45459c;
+  color: #fff;
+}
 
 .b8-backdrop {
   position: fixed;
@@ -404,43 +421,23 @@
 }
 
 .b8-dialog {
-  width: min(1120px, 100%);
+  width: min(1440px, 100%);
   background: #fff;
-  border-radius: 12px;
+  border-radius: 10px;
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.18);
 }
 
 .b8-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.85rem 1rem 0.7rem;
-}
-
-.b8-bar p {
-  margin: 0;
-  font-family: var(--sans);
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: -0.03em;
+  justify-content: flex-end;
+  padding: 0.7rem 0.75rem 0.45rem;
 }
 
 .b8-close {
-  margin: 0;
-  padding: 0.45rem 0.8rem;
-  border: 1px solid #e4e4e4;
-  border-radius: 999px;
-  background: #fff;
-  color: #111;
-  font-family: var(--sans);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  cursor: pointer;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.68rem;
 }
-
-.b8-close:hover { background: #f6f6f6; }
 
 .b8-scroll { padding: 0 0.75rem 0.85rem; }
 

@@ -2,6 +2,7 @@ import { useState, type CSSProperties, type ReactNode } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Board12Scene } from '../components/Board12Scene.tsx'
 import { Board8Prompt } from '../components/Board8Prompt.tsx'
+import { Board9Prompt } from '../components/Board9Plate.tsx'
 import { Board7Scene } from '../components/Board7Scene.tsx'
 import { Board11Plate, Board6Plate } from '../components/FigmaPlate.tsx'
 import { FadeIn } from '../components/FadeIn.tsx'
@@ -225,6 +226,10 @@ export function Home() {
 
       <section className="band" aria-label="Cardboard headband prototypes">
         <Board8Prompt />
+      </section>
+
+      <section className="band" aria-label="Hardware feasibility test">
+        <Board9Prompt />
       </section>
 
       <section className="band">
