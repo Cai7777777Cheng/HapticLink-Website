@@ -471,6 +471,12 @@ const EXPAND = 0.52
 const FADE = 0.34
 const STEP = EXPAND + FADE
 
+/** Figma boolean subtract: capsule minus the circle that bites the left end. */
+const REQ_NOTCH =
+  'M1771.07 0C1882.35 0.000230904 1972.57 90.2148 1972.57 201.5C1972.57 312.785 1882.35 403 1771.07 403H40.2925C16.5054 403 4.6118 403 2.45642 401.008C0.322016 399.036 -0.33668 397.097 0.154506 394.232C0.650522 391.34 10.8516 383.504 31.2536 367.833C82.0545 328.813 114.626 268.582 114.626 201C114.626 133.358 81.9972 73.0811 31.1196 34.0636C11.6481 19.1311 1.91241 11.6648 1.41467 8.77155C0.924559 5.92254 1.59198 3.95549 3.71464 1.993C5.8703 0 17.2338 0 39.9608 0H1771.07Z'
+const CRIT_NOTCH =
+  'M1958.86 0C2028.44 0.00026389 2084.86 56.4123 2084.86 126C2084.86 195.588 2028.44 252 1958.86 252H25.6988C10.4875 252 2.88186 252 1.5359 250.757C0.198964 249.522 -0.209671 248.321 0.0967747 246.527C0.405291 244.721 6.93043 239.7 19.9807 229.657C51.6519 205.284 71.9521 167.701 71.9521 125.536C71.952 83.29 51.5736 45.6435 19.7976 21.2749C7.63639 11.9486 1.55578 7.28539 1.24491 5.47835C0.938807 3.69898 1.35565 2.47044 2.68138 1.24475C4.02772 0 11.125 0 25.3195 0H1958.86Z'
+
 type UnfoldRow = {
   id: string
   box: Box
@@ -771,17 +777,28 @@ export function Board7Scene() {
                 className="b7-pill"
                 style={{
                   ...rel(row.box, row.pill.x, row.pill.y, row.pill.w, row.pill.h),
-                  background: row.pillColor,
-                  borderRadius: frameLength(row.radius),
                   transformOrigin: 'left center',
                 }}
                 initial={false}
                 animate={{ scaleX: shown ? 1 : 0 }}
                 transition={reduce ? { duration: 0 } : { duration: EXPAND, delay, ease: EASE }}
               >
+                <svg
+                  className="b7-pill-shape"
+                  viewBox={row.id.startsWith('req') ? '0 0 1973 403' : '0 0 2085 252'}
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d={row.id.startsWith('req') ? REQ_NOTCH : CRIT_NOTCH}
+                    fill={row.id.startsWith('req') ? '#FF4F4F' : '#45459C'}
+                    fillOpacity={row.id.startsWith('req') ? 0.2 : 1}
+                  />
+                </svg>
                 <motion.span
                   style={{
                     ...rel(row.pill, row.label.box.x, row.label.box.y, row.label.box.w, row.label.box.h),
+                    zIndex: 1,
                     color: row.label.color,
                     fontSize: frameLength(128),
                     fontWeight: 400,

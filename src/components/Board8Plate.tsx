@@ -39,11 +39,11 @@ export function Board8Plate() {
               background: `#${shape.fill}`,
               opacity: shape.a * shape.op,
               borderRadius: shape.t === 'E' ? '50%' : shape.r ? frameLength(shape.r) : undefined,
-              zIndex: 1,
+              zIndex: shape.w > 2000 || shape.h > 1000 ? 1 : 14,
             }}
           />
         ))}
-        {board8Manifest.images.map((image, index) => (
+        {board8Manifest.images.map((image) => (
           <img
             key={image.file}
             src={asset(image.file)}
@@ -57,7 +57,7 @@ export function Board8Plate() {
               ...at(image.x, image.y, image.w, image.h),
               objectFit: image.fit,
               borderRadius: image.r ? frameLength(image.r) : undefined,
-              zIndex: 2 + index,
+              zIndex: 4,
             }}
           />
         ))}
