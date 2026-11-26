@@ -8,12 +8,18 @@ export function FadeIn({
   style,
   delay = 0,
   immediate = false,
+  duration,
+  rise,
+  ready = true,
 }: {
   children: ReactNode
   className?: string
   style?: CSSProperties
   delay?: number
   immediate?: boolean
+  duration?: number
+  rise?: number
+  ready?: boolean
 }) {
   const reduce = useReducedMotion()
   if (reduce) {
@@ -24,15 +30,26 @@ export function FadeIn({
     )
   }
 
+  if (!ready) {
+    return (
+      <div className={className} style={{ ...style, opacity: 0 }} aria-hidden="true">
+        {children}
+      </div>
+    )
+  }
+
   const ease = overlayMotion.ease
+  const distance = rise ?? (immediate ? overlayMotion.heroY : overlayMotion.plateY)
+  const time = duration ?? (immediate ? overlayMotion.heroDuration : overlayMotion.plateDuration)
+
   if (immediate) {
     return (
       <motion.div
         className={className}
         style={style}
-        initial={{ opacity: 0, y: overlayMotion.heroY }}
+        initial={{ opacity: 0, y: distance }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: overlayMotion.heroDuration, delay, ease }}
+        transition={{ duration: time, delay, ease }}
       >
         {children}
       </motion.div>
@@ -43,10 +60,10 @@ export function FadeIn({
     <motion.div
       className={className}
       style={style}
-      initial={{ opacity: 0, y: overlayMotion.plateY }}
+      initial={{ opacity: 0, y: distance }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: overlayMotion.viewportMargin }}
-      transition={{ duration: overlayMotion.plateDuration, delay, ease }}
+      transition={{ duration: time, delay, ease }}
     >
       {children}
     </motion.div>
